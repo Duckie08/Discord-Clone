@@ -1,30 +1,37 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route,
-  Navigate,
+  Redirect,
 } from "react-router-dom";
-
 import "./App.css";
 
 import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import DashBoard from "./Dashboard/Dashboard";
+import AlertNotification from "./shared/components/AlertNotification";
 
 function App() {
   return (
     <>
       <Router>
-        <Routes>
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/register" element={<RegisterPage />} />
-          <Route exact path="/dashboard" element={<DashBoard />} />
-          {/* <Route path="/">
-            <Navigate to="/dashboard" />
-          </Route> */}
-        </Routes>
+        <Switch>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact path="/register">
+            <RegisterPage />
+          </Route>
+          <Route exact path="/dashboard">
+            <DashBoard />
+          </Route>
+          <Route path="/">
+            <Redirect to="/dashboard" />
+          </Route>
+        </Switch>
       </Router>
+      <AlertNotification />
     </>
   );
 }

@@ -1,14 +1,14 @@
 import React from "react";
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 import RedirectInfo from "../../shared/components/RedirectInfo";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Tooltip } from "@mui/material";
 
 const RegisterPageFooter = ({ handleRegister, isFormValid }) => {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const handlePushToLoginPage = () => {
-    navigate("/login");
+    history.push("/login");
   };
   const getFormValidMessage = () => {
     return "Username should contains between 3 and 12 character and password shoud contain 6 to 12 characters.";

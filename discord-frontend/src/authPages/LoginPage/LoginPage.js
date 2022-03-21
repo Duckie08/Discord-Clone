@@ -4,12 +4,13 @@ import LoginPageFooter from "./LoginPageFooter";
 import LoginPageHeader from "./LoginPageHeader";
 import LoginPageInput from "./LoginPageInput";
 import { validateLoginForm } from "../../shared/utils/validators";
-import { connect } from "react-redux ";
+
+import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const LoginPage = ({ login }) => {
-  const history = useNavigate();
+  const history = useHistory();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);

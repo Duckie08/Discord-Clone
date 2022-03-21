@@ -4,27 +4,31 @@ import AuthBox from "../../shared/components/AuthBox";
 import RegisterPageFooter from "./RegisterPageFooter";
 import RegisterPageInput from "./RegisterPageInput";
 import { validateRegisterForm } from "../../shared/utils/validators";
+
 import { getActions } from "../../store/actions/authActions";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const RegisterPage = ({ register }) => {
-  const history = useNavigate();
+  const history = useHistory();
 
   const [mail, setMail] = useState("");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleRegister = () => {
+    console.log("mail", mail);
+    console.log("username", username);
+    console.log("password", password);
     const userDetails = {
       mail,
       password,
       username,
     };
+    console.log("7777", userDetails);
     register(userDetails, history);
-    console.log("register");
-    console.log(mail);
   };
 
   useEffect(() => {

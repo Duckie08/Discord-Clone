@@ -1,6 +1,7 @@
 import * as api from "../../api";
+import { openAlertMessage } from "./alertActions";
 
-const authActions = {
+export const authActions = {
   SET_USER_DETAILS: "AUTH.SET_USER_DETAILS",
 };
 
@@ -8,7 +9,7 @@ export const getActions = (dispatch) => {
   return {
     login: (userDetails, history) => dispatch(login(userDetails, history)),
     register: (userDetails, history) =>
-      dispatch(register((userDetails, history))),
+      dispatch(register(userDetails, history)),
   };
 };
 
@@ -20,11 +21,14 @@ const setUserDetails = (userDetails) => {
 };
 
 const login = (userDetails, history) => {
+  console.log("5555", userDetails);
+
   return async (dispatch) => {
-    const response = api.login(userDetails);
+    const response = await api.login(userDetails);
     console.log("res", response);
     if (response.error) {
       //handle show error message in alert
+      dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
       const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
@@ -33,14 +37,20 @@ const login = (userDetails, history) => {
     }
   };
 };
-const register = (userDetails, history) => {
-  return async (dispatch) => {
-    const response = api.register(userDetails);
 
+const register = (userDetails, history) => {
+  console.log("5555", userDetails);
+
+  return async (dispatch) => {
+    const response = await api.register(userDetails);
+    console.log("4343434", response);
     if (response.error) {
       //handle show error message in alert
+      dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
+      console.log("4444", userDetails);
       const { userDetails } = response?.data;
+      console.log("4444", userDetails);
       localStorage.setItem("user", JSON.stringify(userDetails));
       dispatch(setUserDetails(userDetails));
       history.push("/dashboard");
