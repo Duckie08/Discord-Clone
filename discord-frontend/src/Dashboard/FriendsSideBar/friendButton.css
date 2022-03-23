@@ -1,0 +1,11 @@
+.friend-button {
+  width: 100%;
+}
+
+.friend-button .MuiButton-root {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 90%;
+  height: 30px;
+  background-color: #3ba55d ;
+}
